@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GU Student Portal | Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Top Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#">GU Portal</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item">
+            <span class="nav-link text-white" id="userDisplay">Welcome</span>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-light btn-sm ms-lg-3" id="logoutBtn">Logout</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+        <div class="position-sticky pt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Courses</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Grades</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Assignments</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+        <header class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-4 border-bottom">
+          <h1 class="h2" id="greeting">Good Morning!</h1>
+        </header>
+
+        <!-- 4 Statistic Cards -->
+        <section class="row g-4 mb-4">
+          <div class="col-sm-6 col-xl-3">
+            <div class="card stat-card h-100">
+              <div class="card-body">
+                <h6 class="card-subtitle text-muted" id="stat1-title">Overall GPA</h6>
+                <h3 class="card-title mt-2" id="stat1-value">0.00</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="card stat-card h-100">
+              <div class="card-body">
+                <h6 class="card-subtitle text-muted" id="stat2-title">Current Courses</h6>
+                <h3 class="card-title mt-2" id="stat2-value">0</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="card stat-card h-100">
+              <div class="card-body">
+                <h6 class="card-subtitle text-muted" id="stat3-title">Pending Assignments</h6>
+                <h3 class="card-title mt-2" id="stat3-value">0</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="card stat-card h-100">
+              <div class="card-body">
+                <h6 class="card-subtitle text-muted" id="stat4-title">Attendance</h6>
+                <h3 class="card-title mt-2" id="stat4-value">0%</h3>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Recent Activity Table -->
+        <section class="card">
+          <div class="card-header">
+            <h5 class="mb-0">Recent Activity</h5>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th>Activity</th>
+                    <th>Course</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody id="activityTableBody">
+                  <tr>
+                    <td>Submitted Assignment</td>
+                    <td>Web Development</td>
+                    <td>Completed</td>
+                    <td>2026-08-24</td>
+                  </tr>
+                  <tr>
+                    <td>Quiz Taken</td>
+                    <td>Database Systems</td>
+                    <td>Graded</td>
+                    <td>2026-08-23</td>
+                  </tr>
+                  <tr>
+                    <td>New Announcement</td>
+                    <td>Software Engineering</td>
+                    <td>Unread</td>
+                    <td>2026-08-22</td>
+                  </tr>
+                  <tr>
+                    <td>Assignment Due Soon</td>
+                    <td>Data Structures</td>
+                    <td>Pending</td>
+                    <td>2026-08-21</td>
+                  </tr>
+                  <tr>
+                    <td>Grade Posted</td>
+                    <td>Computer Networks</td>
+                    <td>Viewed</td>
+                    <td>2026-08-20</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
