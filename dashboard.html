@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GU Student Portal | Dashboard</title>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#">GU Portal</a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item">
+            <span class="nav-link text-white" id="userDisplay">Welcome</span>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-light btn-sm ms-lg-3" id="logoutBtn">
+              Logout
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+        <div class="position-sticky pt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link active" href="#" id="nav-dashboard">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" id="nav-inventory">Inventory</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Courses</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Grades</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Assignments</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+        
+        <!-- DASHBOARD SECTION -->
+        <div id="dashboard-section">
+          <header class="d-flex align-items-center pb-2 mb-4 border-bottom">
+            <h1 class="h2" id="greeting">Welcome!</h1>
+          </header>
+
+          <section class="row g-4 mb-4">
+            <div class="col-sm-6 col-xl-3">
+              <div class="card stat-card h-100">
+                <div class="card-body">
+                  <h6 class="card-subtitle text-muted">Overall GPA</h6>
+                  <h3 class="card-title mt-2" id="stat1-value">0.00</h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-xl-3">
+              <div class="card stat-card h-100">
+                <div class="card-body">
+                  <h6 class="card-subtitle text-muted">Current Courses</h6>
+                  <h3 class="card-title mt-2" id="stat2-value">0</h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-xl-3">
+              <div class="card stat-card h-100">
+                <div class="card-body">
+                  <h6 class="card-subtitle text-muted">Pending Assignments</h6>
+                  <h3 class="card-title mt-2" id="stat3-value">0</h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-xl-3">
+              <div class="card stat-card h-100">
+                <div class="card-body">
+                  <h6 class="card-subtitle text-muted">Attendance</h6>
+                  <h3 class="card-title mt-2" id="stat4-value">0%</h3>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card mb-4">
+            <div class="card-header">
+              <h5 class="mb-0">Activity Search &amp; Filters</h5>
+            </div>
+            <div class="card-body">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="searchInput" class="form-label">Search Activity</label>
+                  <input
+                    type="search"
+                    id="searchInput"
+                    class="form-control"
+                    placeholder="Search activity, course, or status..."
+                  >
+                </div>
+
+                <div class="col-md-3">
+                  <label for="courseFilter" class="form-label">Course</label>
+                  <select id="courseFilter" class="form-select">
+                    <option value="all">All Courses</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="Database Systems">Database Systems</option>
+                    <option value="Software Engineering">Software Engineering</option>
+                    <option value="Data Structures">Data Structures</option>
+                    <option value="Computer Networks">Computer Networks</option>
+                  </select>
+                </div>
+
+                <div class="col-md-3">
+                  <label for="statusFilter" class="form-label">Status</label>
+                  <select id="statusFilter" class="form-select">
+                    <option value="all">All Status</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Graded">Graded</option>
+                    <option value="Unread">Unread</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Viewed">Viewed</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mt-3">
+                <button id="exportBtn" class="btn btn-primary">
+                  Export Activities to CSV
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section id="alertSection" class="mb-4" aria-live="polite"></section>
+
+          <section class="row g-4 mb-4">
+            <div class="col-lg-6">
+              <div class="card h-100">
+                <div class="card-header">Activities by Course</div>
+                <div class="card-body">
+                  <canvas id="courseChart" aria-label="Activities by course chart"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="card h-100">
+                <div class="card-header">Activity Status</div>
+                <div class="card-body">
+                  <canvas id="statusChart" aria-label="Activity status chart"></canvas>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Recent Activity</h5>
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col">Activity</th>
+                      <th scope="col">Course</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody id="activityTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- INVENTORY SECTION -->
+        <div id="inventory-section" class="d-none">
+          <header class="d-flex align-items-center pb-2 mb-4 border-bottom">
+            <h1 class="h2"> School Utilities</h1>
+          </header>
+
+          <section class="card mb-4">
+            <div class="card-header">
+              <h5 class="mb-0">Add New Stock</h5>
+            </div>
+            <div class="card-body">
+              <form id="addInventoryForm" class="row g-3">
+                <div class="col-md-4">
+                  <label for="itemName" class="form-label">Item Name</label>
+                  <input type="text" id="itemName" class="form-control" placeholder="e.g. Laptops" required>
+                </div>
+                <div class="col-md-3">
+                  <label for="itemCategory" class="form-label">Category</label>
+                  <select id="itemCategory" class="form-select" required>
+                    <option value="">Select...</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Furniture">Furniture</option>
+                    <option value="Supplies">Supplies</option>
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <label for="itemQuantity" class="form-label">Quantity</label>
+                  <input type="number" id="itemQuantity" class="form-control" min="1" required>
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                  <button type="submit" class="btn btn-primary w-100">Add to Stock</button>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="mb-0">Current Stock</h5>
+              <button id="exportInventoryBtn" class="btn btn-success btn-sm">Export Stock to CSV</button>
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col">Item Name</th>
+                      <th scope="col">Category</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Date Added</th>
+                    </tr>
+                  </thead>
+                  <tbody id="inventoryTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/dataManager.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
